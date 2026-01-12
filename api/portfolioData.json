@@ -1,0 +1,85 @@
+{
+  "personal": {
+    "name": "Abu Bakar Butt",
+    "role": "Frontend Developer",
+    "tagline": "Building digital experiences that matter.",
+    "email": "contact@example.com",
+    "socials": [
+      { "path": "https://github.com/abubakarbutt-developer", "label": "GitHub" },
+      { "path": "https://www.linkedin.com/in/abu-bakar-butt-68a95b318", "label": "LinkedIn" }
+    ]
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I am a passionate Frontend Developer with experience in building web applications using modern technologies. I love solving complex problems and creating intuitive user interfaces. When I'm not coding, I enjoy learning about new tech trends and contributing to open source."
+  },
+  "navLinks": [
+    { "name": "Home", "href": "#hero" },
+    { "name": "About", "href": "#about" },
+    { "name": "Skills", "href": "#skills" },
+    { "name": "Projects", "href": "#projects" },
+    { "name": "Contact", "href": "#contact" }
+  ],
+  "skills": [
+    { 
+      "category": "Frontend", 
+      "items": [
+        { "name": "React", "level": 90 },
+        { "name": "Next.js", "level": 85 },
+        { "name": "Tailwind", "level": 95 },
+        { "name": "GSAP", "level": 80 },
+        { "name": "TypeScript", "level": 85 }
+      ] 
+    },
+
+    { 
+      "category": "Tools", 
+      "items": [
+        { "name": "Git", "level": 90 },
+        { "name": "Docker", "level": 60 },
+        { "name": "Figma", "level": 80 },
+        { "name": "VS Code", "level": 95 }
+      ] 
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Dashboard",
+      "description": "A comprehensive dashboard for managing online stores with real-time analytics.",
+      "tech": ["Next.js", "Tailwind", "Recharts"],
+      "link": "#",
+      "image": "/images/ecommerce.png"
+    },
+    {
+      "id": 2,
+      "title": "Social Media App",
+      "description": "A connect-centric platform for professionals to network and share ideas.",
+      "tech": ["React", "Firebase", "Redux"],
+      "link": "#",
+      "image": "/images/social.png"
+    },
+    {
+      "id": 3,
+      "title": "Portfolio Website",
+      "description": "Modern, performant portfolio showing skills and experience.",
+      "tech": ["Next.js", "GSAP", "Tailwind"],
+      "link": "#",
+      "image": "/images/portfolio.png"
+    }
+  ],
+  "accordions": [
+     {
+       "title": "What services do you offer?",
+       "content": "I offer frontend web development, UI/UX implementation, and performance optimization."
+     },
+     {
+       "title": "Are you available for freelance?",
+       "content": "Yes, I am currently open to freelance projects and long-term contracts."
+     },
+     {
+       "title": "What is your tech stack?",
+       "content": "I primarily work with the JavaScript ecosystem (React, Next.js, Node.js) but I am adaptable to other technologies."
+     }
+  ]
+}
