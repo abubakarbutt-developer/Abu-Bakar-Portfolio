@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Head from 'next/head';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -10,12 +11,18 @@ import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import BackToTop from '../components/BackToTop';
+import Preloader from '../components/Preloader';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import portfolioData from '../api/portfolioData.json';
 
 export default function Home() {
   const { personal, about, navLinks, skills, projects, accordions } = portfolioData;
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Initialize smooth scroll
+  useSmoothScroll();
 
   useGSAP(() => {
     gsap.from('.logo-char', {
@@ -28,37 +35,53 @@ export default function Home() {
     });
   }, { scope: containerRef });
 
+  const handlePreloaderComplete = () => {
+    setShowPreloader(false);
+    // Refresh ScrollTrigger as layout might have changed or positions need recalculation
+    setTimeout(() => {
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.refresh();
+    }, 100);
+  };
+
   return (
-    <div className="bg-slate-50 dark:bg-slate-900 min-h-screen text-slate-900 dark:text-slate-100 selection:bg-blue-500/30 transition-colors duration-300">
-      <Head>
-        <title>{personal.name} | {personal.role}</title>
-        <meta name="description" content={personal.tagline} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
+      <div
+        ref={containerRef}
+        className="bg-background text-foreground min-h-screen transition-colors duration-300"
+        style={{ opacity: showPreloader ? 0 : 1, transition: 'opacity 0.5s ease-in-out' }}
+      >
+        <Head>
+          <title>{`${personal.name} | ${personal.role}`}</title>
+          <meta name="description" content={personal.tagline} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
+        <Navbar links={navLinks} isOpen={isNavOpen} setIsOpen={setIsNavOpen} />
 
-      <Navbar links={navLinks} isOpen={isNavOpen} setIsOpen={setIsNavOpen} />
+        <main>
+          <Hero
+            name={personal.name}
+            role={personal.role}
+            tagline={personal.tagline}
+            socials={personal.socials}
+          />
 
-      <main>
-        <Hero
-          name={personal.name}
-          role={personal.role}
-          tagline={personal.tagline}
-          socials={personal.socials}
-        />
+          <About title={about.title} description={about.description} />
 
-        <About title={about.title} description={about.description} />
+          <Skills skills={skills} />
 
-        <Skills skills={skills} />
+          <Projects projects={projects} />
 
-        <Projects projects={projects} />
+          <Contact email={personal.email} accordions={accordions} />
+        </main>
 
-        <Contact email={personal.email} accordions={accordions} />
-      </main>
-
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
   );
 }
+

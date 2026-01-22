@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useTheme } from '../hooks/useTheme';
 import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -28,7 +27,6 @@ const getIcon = (name: string) => {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpen: externalSetIsOpen }) => {
-    const { theme, toggleTheme } = useTheme();
     const [internalIsOpen, setInternalIsOpen] = useState(false);
 
     // Use external state if provided, otherwise internal
@@ -103,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
             <div className="pointer-events-auto md:hidden fixed top-6 right-6 z-50">
                 <button
                     onClick={() => handleSetIsOpen(!isOpen)}
-                    className="p-3 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-full shadow-lg text-slate-900 dark:text-white hover:scale-110 transition-transform"
+                    className="p-3 bg-card-bg backdrop-blur-xl border border-border-color rounded-full shadow-lg text-foreground hover:scale-110 transition-transform"
                 >
                     {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
                 </button>
@@ -111,20 +109,20 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
             {/* Collapsed Sidebar (Icons Only) - Samsung Edge Style */}
             <div
                 ref={sidebarRef}
-                className="hidden md:flex pointer-events-auto relative bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border-y border-l border-slate-200/50 dark:border-slate-700/50 rounded-l-3xl shadow-2xl p-4 md:p-5 w-20 md:w-24 flex-col gap-8 items-center justify-center min-h-[50vh] md:min-h-[60vh] z-50 mr-0"
+                className="hidden md:flex pointer-events-auto relative bg-card-bg backdrop-blur-xl border-y border-l border-border-color rounded-l-3xl shadow-2xl p-4 md:p-5 w-20 md:w-24 flex-col gap-8 items-center justify-center min-h-[50vh] md:min-h-[60vh] z-50 mr-0"
             >
-                <div className="w-1.5 h-12 bg-slate-600 rounded-full mb-2 opacity-50" />
+                <div className="w-1.5 h-12 bg-primary/30 rounded-full mb-2 opacity-50" />
 
                 {links.map((link) => (
                     <Link
                         key={link.name}
                         href={link.href}
-                        className="text-slate-400 hover:text-blue-400 hover:scale-125 transition-all duration-200 relative group p-2"
+                        className="text-secondary hover:text-primary hover:scale-125 transition-all duration-200 relative group p-2"
                         title={link.name}
                     >
                         {getIcon(link.name)}
                         {/* Tooltip on hover */}
-                        <span className="absolute right-full mr-6 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-800 text-slate-100 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 transition-all duration-300 whitespace-nowrap pointer-events-none border border-slate-700 shadow-xl">
+                        <span className="absolute right-full mr-6 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-900 text-white text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 transition-all duration-300 whitespace-nowrap pointer-events-none border border-white/10 shadow-xl">
                             {link.name}
                         </span>
                     </Link>
@@ -132,17 +130,11 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
 
 
 
-                <button
-                    onClick={toggleTheme}
-                    className="text-slate-400 hover:text-yellow-400 dark:hover:text-yellow-300 transition-colors p-2 mt-auto mb-2"
-                    title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                >
-                    {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
-                </button>
+
 
                 <button
                     onClick={() => handleSetIsOpen(true)}
-                    className="mt-4 text-slate-500 hover:text-white transition-colors p-2"
+                    className="mt-4 text-secondary hover:text-primary transition-colors p-2"
                 >
                     <div ref={chevronRef}>
                         <FaChevronLeft size={24} />
@@ -172,15 +164,10 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
                     <FaTimes size={24} />
                 </button>
 
-                <button
-                    onClick={toggleTheme}
-                    className="absolute top-6 left-6 p-2 text-slate-400 hover:text-yellow-400 dark:hover:text-yellow-300 transition-colors"
-                >
-                    {theme === 'dark' ? <FaSun size={24} /> : <FaMoon size={24} />}
-                </button>
 
-                <div className="px-8 space-y-8">
-                    <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-10 block">
+
+                <div className="px-8 space-y-8 mt-20">
+                    <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-10 block">
                         Abu Bakar Butt
                     </h2>
                     <div className="flex flex-col space-y-6">
@@ -189,9 +176,9 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => handleSetIsOpen(false)}
-                                className="nav-item-side text-2xl font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:translate-x-2 transition-all duration-300 flex items-center gap-4 group"
+                                className="nav-item-side text-2xl font-medium text-secondary hover:text-primary hover:translate-x-2 transition-all duration-300 flex items-center gap-4 group"
                             >
-                                <span className="text-blue-500 group-hover:scale-110 transition-transform">
+                                <span className="text-primary group-hover:scale-110 transition-transform">
                                     {getIcon(link.name)}
                                 </span>
                                 {link.name}

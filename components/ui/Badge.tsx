@@ -7,13 +7,13 @@ interface BadgeProps {
 }
 
 const Badge: React.FC<BadgeProps> = ({ children, variant = 'primary', className = '' }) => {
-    const baseStyles = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold';
+    const baseStyles = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300';
 
     const variants = {
-        primary: 'bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-500/20',
-        secondary: 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300',
-        outline: 'border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400',
-        success: 'bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-500/20',
+        primary: 'bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 shadow-sm shadow-primary/10',
+        secondary: 'bg-card-bg text-secondary border border-border-color hover:border-primary/40',
+        outline: 'border border-border-color text-secondary hover:text-primary hover:border-primary bg-transparent',
+        success: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20',
     };
 
     return (

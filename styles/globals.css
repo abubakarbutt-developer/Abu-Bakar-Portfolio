@@ -3,19 +3,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #3b82f6;
+  --background: #030303;
+  /* Ultra-deep charcoal for premium look */
+  --foreground: #f8fafc;
+  --primary: #10b981;
+  /* Coder Emerald */
   --secondary: #64748b;
-  --accent: #8b5cf6;
+  --accent: #2dd4bf;
+  /* Teal complement */
+  --card-bg: rgba(12, 12, 12, 0.7);
+  --border-color: rgba(255, 255, 255, 0.05);
 }
 
+/* Force dark theme variables always */
 :root.dark {
-  --background: #0f172a;
+  --background: #030303;
   --foreground: #f8fafc;
-  --primary: #3b82f6;
+  --primary: #10b981;
   --secondary: #64748b;
-  --accent: #8b5cf6;
+  --accent: #2dd4bf;
+  --card-bg: rgba(12, 12, 12, 0.7);
+  --border-color: rgba(255, 255, 255, 0.05);
 }
 
 body {
@@ -24,29 +32,49 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* scroll-behavior: smooth; - Handled by Lenis */
+  position: relative;
+}
+
+/* Developer-style Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 @theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-card-bg: var(--card-bg);
+  --color-border-color: var(--border-color);
 }
 
 /* Glassmorphism Utilities */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
 }
 
 .glass-card {
-  background: rgba(15, 23, 42, 0.6);
+  background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Custom Scrollbar */
@@ -65,4 +93,130 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* RGB / Animated Theme Utilities */
+@keyframes rgb-text {
+  0% {
+    color: #10b981;
+    filter: drop-shadow(0 0 2px #10b981);
+  }
+
+  33% {
+    color: #3b82f6;
+    filter: drop-shadow(0 0 2px #3b82f6);
+  }
+
+  66% {
+    color: #8b5cf6;
+    filter: drop-shadow(0 0 2px #8b5cf6);
+  }
+
+  100% {
+    color: #10b981;
+    filter: drop-shadow(0 0 2px #10b981);
+  }
+}
+
+@keyframes rgb-border {
+  0% {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  }
+
+  33% {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+  }
+
+  66% {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+  }
+
+  100% {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  }
+}
+
+@keyframes hue-shift {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.animate-rgb-text {
+  animation: rgb-text 10s linear infinite;
+}
+
+.animate-rgb-border {
+  animation: rgb-border 10s linear infinite;
+}
+
+.animate-hue-shift {
+  animation: hue-shift 15s linear infinite;
+}
+
+.bg-animate-gradient {
+  background-size: 300% 300%;
+  animation: background-animate 6s ease-in-out infinite;
+}
+
+@keyframes background-animate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-icon-pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes icon-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }

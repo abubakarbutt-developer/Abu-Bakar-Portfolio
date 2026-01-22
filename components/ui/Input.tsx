@@ -11,13 +11,13 @@ const Input: React.FC<InputProps> = ({ label, error, className = '', id, ...prop
     return (
         <div className="w-full">
             {label && (
-                <label htmlFor={inputId} className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5">
+                <label htmlFor={inputId} className="block text-sm font-medium text-secondary mb-1.5">
                     {label}
                 </label>
             )}
             <input
                 id={inputId}
-                className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 outline-none transition-all duration-300 ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
+                className={`w-full px-4 py-3 bg-card-bg border border-border-color rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-secondary/50 outline-none transition-all duration-300 ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
                 {...props}
             />
             {error && <p className="mt-1 text-sm text-red-500">{error}</p>}

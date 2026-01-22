@@ -31,24 +31,26 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, o
     }, [isOpen]);
 
     return (
-        <div className="border-b border-slate-200 dark:border-slate-800 last:border-0">
+        <div className="border-b border-border-color last:border-0">
             <button
                 className="w-full py-4 px-2 flex items-center justify-between text-left focus:outline-none group"
                 onClick={onClick}
             >
-                <span className={`text-lg font-medium transition-colors duration-200 ${isOpen ? 'text-blue-500 dark:text-blue-400' : 'text-slate-700 dark:text-slate-300 group-hover:text-blue-500 dark:group-hover:text-white'}`}>
+                <span className={`text-lg font-medium transition-colors duration-200 ${isOpen ? 'text-primary' : 'text-foreground group-hover:text-primary'}`}>
                     {title}
                 </span>
-                <span className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180 text-blue-400' : 'text-slate-500'}`}>
+                <span className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : 'text-secondary'}`}>
                     ▼
                 </span>
             </button>
             <div
                 ref={contentRef}
-                className="overflow-hidden h-0 opacity-0 bg-slate-100 dark:bg-slate-900/30 rounded-lg mb-2"
+                className="overflow-hidden h-0 opacity-0 bg-primary/5 rounded-lg mb-2"
                 style={{ height: 0 }}
             >
-                {content}
+                <div className="py-4 px-2 text-secondary">
+                    {content}
+                </div>
             </div>
         </div>
     );
@@ -66,7 +68,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
     };
 
     return (
-        <div className="w-full max-w-2xl mx-auto border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50 p-4">
+        <div className="w-full max-w-2xl mx-auto border border-border-color rounded-xl bg-card-bg p-4">
             {items.map((item, index) => (
                 <AccordionItem
                     key={index}

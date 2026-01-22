@@ -1,33 +1,21 @@
 import { useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark';
+type Theme = 'dark';
 
 export const useTheme = () => {
-    const [theme, setTheme] = useState<Theme>('dark');
-
-    useEffect(() => {
-        // Check local storage or system preference
-        const savedTheme = localStorage.getItem('theme') as Theme;
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else if (systemPrefersDark) {
-            setTheme('dark');
-        } else {
-            setTheme('light'); // Default to light if no preference and not dark system
-        }
-    }, []);
+    // Force dark theme permanently
+    const [theme] = useState<Theme>('dark');
 
     useEffect(() => {
         const root = window.document.documentElement;
-        root.classList.remove('light', 'dark');
-        root.classList.add(theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
+        root.classList.remove('light');
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    }, []);
 
     const toggleTheme = () => {
-        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+        // No-op to prevent accidental switching
+        console.log("Theme is locked to dark mode.");
     };
 
     return { theme, toggleTheme };
