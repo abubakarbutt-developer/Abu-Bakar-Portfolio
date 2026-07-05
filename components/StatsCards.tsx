@@ -51,11 +51,11 @@ const StatsCards: React.FC<StatsCardsProps> = ({ stats }) => {
     }, { scope: containerRef, dependencies: [stats] });
 
     return (
-        <div ref={containerRef} className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+        <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 w-full max-w-3xl mx-auto px-4">
             {stats.map((stat, index) => (
                 <div
                     key={index}
-                    className="stat-card group relative overflow-hidden bg-gradient-to-br from-primary/10 to-indigo-500/10 backdrop-blur-sm border border-primary/20 rounded-2xl px-4 md:px-6 py-3 md:py-4 transition-all duration-300 hover:scale-105 animate-rgb-border"
+                    className="stat-card group relative overflow-hidden bg-gradient-to-br from-primary/10 to-indigo-500/10 backdrop-blur-sm border border-primary/20 rounded-2xl px-4 md:px-6 py-4 md:py-4 transition-all duration-300 hover:scale-105 animate-rgb-border flex justify-center"
                 >
                     {/* Glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

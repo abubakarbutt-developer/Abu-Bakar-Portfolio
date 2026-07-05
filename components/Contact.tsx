@@ -145,7 +145,7 @@ const Contact: React.FC<ContactProps> = ({ email, accordions }) => {
                                 <a href="https://github.com/abubakarbutt-developer" target="_blank" className="p-4 bg-white/5 rounded-2xl text-secondary hover:text-white hover:bg-white/10 transition-all duration-300">
                                     <FaGithub size={24} />
                                 </a>
-                                <a href="https://www.linkedin.com/in/abu-bakar-butt-68a95b318" target="_blank" className="p-4 bg-white/5 rounded-2xl text-secondary hover:text-white hover:bg-white/10 transition-all duration-300">
+                                <a href="https://www.linkedin.com/in/abu-bakar-butt-7598933a3/" target="_blank" className="p-4 bg-white/5 rounded-2xl text-secondary hover:text-white hover:bg-white/10 transition-all duration-300">
                                     <FaLinkedin size={24} />
                                 </a>
                             </div>

@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useTheme } from '../hooks/useTheme';
 import { FaReact, FaNodeJs, FaPython, FaDocker, FaFigma, FaGitAlt } from 'react-icons/fa';
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiPostgresql, SiExpress, SiGreensock } from 'react-icons/si';
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiPostgresql, SiExpress, SiGreensock, SiNestjs, SiFramer } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
+import { MdWaves } from 'react-icons/md';
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +29,10 @@ const getSkillIcon = (name: string) => {
         case 'gsap': return <SiGreensock className="text-emerald-500 animate-icon-pulse" size={32} />;
         case 'typescript': return <SiTypescript className="text-blue-500 animate-icon-pulse" size={32} />;
         case 'node.js': return <FaNodeJs className="text-emerald-600 animate-icon-pulse" size={32} />;
+        case 'nestjs': return <SiNestjs className="text-red-500 animate-icon-pulse" size={32} />;
         case 'express': return <SiExpress className="animate-icon-pulse" size={32} />;
+        case 'framer motion': return <SiFramer className="text-purple-500 animate-icon-pulse" size={32} />;
+        case 'react lenis': return <MdWaves className="text-cyan-400 animate-icon-pulse" size={32} />;
         case 'python': return <FaPython className="text-yellow-400 animate-icon-pulse" size={32} />;
         case 'postgresql': return <SiPostgresql className="text-blue-400 animate-icon-pulse" size={32} />;
         case 'git': return <FaGitAlt className="text-orange-500 animate-icon-pulse" size={32} />;

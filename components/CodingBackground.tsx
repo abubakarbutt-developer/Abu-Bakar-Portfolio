@@ -79,22 +79,27 @@ const CodingBackground: React.FC = () => {
             }
         }
 
-        // Create code lines
+        // Create code lines — keep count low for performance
         const lines: CodeLine[] = [];
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 15; i++) {
             lines.push(new CodeLine());
         }
 
-        // Animation loop
+        // Animation loop — cache hue per frame, not per line
         let animationId: number;
+        let hue = 0;
         const animate = () => {
             if (!ctx || !canvas) return;
             ctx.fillStyle = 'rgba(2, 6, 23, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+            hue = (hue + 0.3) % 360;
             lines.forEach(line => {
                 line.update();
-                line.draw();
+                // Override draw inline to use cached hue
+                ctx.font = `${line.fontSize}px "Fira Code", "Courier New", monospace`;
+                ctx.fillStyle = `hsla(${hue}, 70%, 50%, ${line.opacity})`;
+                ctx.fillText(line.text, line.x, line.y);
             });
 
             animationId = requestAnimationFrame(animate);
@@ -102,8 +107,16 @@ const CodingBackground: React.FC = () => {
 
         animate();
 
+        // Pause when tab is hidden to save resources
+        const handleVisibility = () => {
+            if (document.hidden) cancelAnimationFrame(animationId);
+            else animate();
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+
         return () => {
             window.removeEventListener('resize', resizeCanvas);
+            document.removeEventListener('visibilitychange', handleVisibility);
             cancelAnimationFrame(animationId);
         };
     }, []);

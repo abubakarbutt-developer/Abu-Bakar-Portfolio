@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { FaChevronLeft, FaTimes, FaHome, FaUser, FaCode, FaBriefcase, FaEnvelope, FaSun, FaMoon, FaBars } from 'react-icons/fa';
+import { FaChevronLeft, FaTimes, FaHome, FaUser, FaCode, FaBriefcase, FaEnvelope, FaBars } from 'react-icons/fa';
 
 interface NavLink {
     name: string;
@@ -155,7 +155,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, isOpen: externalIsOpen, setIsOpe
             {/* Expanded Drawer (Text + Icons) */}
             <div
                 ref={menuRef}
-                className="pointer-events-auto absolute top-0 right-0 h-full w-80 glass border-l border-slate-200/30 dark:border-slate-700/30 transform translate-x-full shadow-2xl flex flex-col overflow-y-auto"
+                className="pointer-events-auto absolute top-0 right-0 h-full w-full sm:w-80 glass border-l border-slate-200/30 dark:border-slate-700/30 transform translate-x-full shadow-2xl flex flex-col overflow-y-auto"
             >
                 <button
                     onClick={() => handleSetIsOpen(false)}

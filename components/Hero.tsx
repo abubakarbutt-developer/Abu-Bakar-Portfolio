@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Button from './ui/Button';
@@ -7,7 +7,6 @@ import TypingAnimation from './TypingAnimation';
 import StatsCards from './StatsCards';
 import { FaGithub, FaLinkedin, FaRocket, FaUsers, FaCode, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaBriefcase } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript, SiGreensock, SiTailwindcss, SiMongodb, SiExpress, SiPostgresql, SiGraphql, SiRedux } from 'react-icons/si';
-import { AiOutlineApi } from 'react-icons/ai';
 import { VscChevronDown } from 'react-icons/vsc';
 
 interface HeroProps {
@@ -59,6 +58,16 @@ const Hero: React.FC<HeroProps> = ({ name, role, tagline, socials }) => {
         'export default App'
     ];
 
+    // Stable positions for floating code snippets (computed once)
+    const snippetPositions = useMemo(() =>
+        codeSnippets.map(() => ({
+            top: `${Math.random() * 80 + 10}%`,
+            left: `${Math.random() * 80 + 10}%`,
+        })),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
+
     // Portfolio stats
     const stats = [
         { value: '50+', label: 'Projects Completed', icon: <FaRocket className="text-primary" /> },
@@ -66,22 +75,25 @@ const Hero: React.FC<HeroProps> = ({ name, role, tagline, socials }) => {
         { value: '3+', label: 'Years Experience', icon: <FaBriefcase className="text-emerald-400" /> },
     ];
 
-    // Split text into characters for animation
+    // Split text into characters grouped by words to allow responsive wrapping
     useEffect(() => {
-        if (nameRef.current) {
-            const text = nameRef.current.textContent || '';
-            nameRef.current.innerHTML = text
-                .split('')
-                .map((char) => `<span class="char" style="display: inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`)
-                .join('');
-        }
-        if (roleRef.current) {
-            const text = roleRef.current.textContent || '';
-            roleRef.current.innerHTML = text
-                .split('')
-                .map((char) => `<span class="char" style="display: inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`)
-                .join('');
-        }
+        const splitText = (element: HTMLElement | null) => {
+            if (!element) return;
+            const text = element.textContent || '';
+            const words = text.split(' ');
+            element.innerHTML = words
+                .map(word => {
+                    const charsHtml = word
+                        .split('')
+                        .map(char => `<span class="char inline-block">${char}</span>`)
+                        .join('');
+                    return `<span class="word inline-block whitespace-nowrap">${charsHtml}</span>`;
+                })
+                .join(' ');
+        };
+
+        splitText(nameRef.current);
+        splitText(roleRef.current);
     }, [name, role]);
 
     useGSAP(() => {
@@ -254,27 +266,25 @@ const Hero: React.FC<HeroProps> = ({ name, role, tagline, socials }) => {
                 <div
                     key={i}
                     className="code-snippet parallax-layer-2 absolute text-xs md:text-sm font-mono text-primary/10 dark:text-emerald-400/5 pointer-events-none select-none"
-                    style={{
-                        top: `${Math.random() * 80 + 10}%`,
-                        left: `${Math.random() * 80 + 10}%`,
-                    }}
+                    style={snippetPositions[i]}
                 >
                     {snippet}
                 </div>
             ))}
 
+
             {/* Grid pattern overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
 
             {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 relative">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 relative">
                 <h2 className="hero-greeting text-lg md:text-2xl font-medium mb-2 md:mb-4 animate-rgb-text">
                     Hello, I'm
                 </h2>
 
                 <h1
                     ref={nameRef}
-                    className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-white via-emerald-100 to-cyan-200 bg-clip-text text-transparent drop-shadow-2xl perspective-1000 leading-tight"
+                    className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-white via-emerald-100 to-cyan-200 bg-clip-text text-transparent drop-shadow-2xl perspective-1000 leading-tight"
                     style={{ textShadow: '0 0 80px rgba(16, 185, 129, 0.3)' }}
                 >
                     {name}
@@ -282,7 +292,7 @@ const Hero: React.FC<HeroProps> = ({ name, role, tagline, socials }) => {
 
                 <h3
                     ref={roleRef}
-                    className="text-xl sm:text-3xl md:text-5xl font-semibold bg-gradient-to-r from-primary via-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-6 md:mb-8"
+                    className="text-lg sm:text-3xl md:text-5xl font-semibold bg-gradient-to-r from-primary via-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-6 md:mb-8"
                 >
                     {role}
                 </h3>
@@ -297,7 +307,7 @@ const Hero: React.FC<HeroProps> = ({ name, role, tagline, socials }) => {
                 </div>
 
                 {/* Infinite Tech Stack Slider */}
-                <div className="tech-slider mb-8 md:mb-12 overflow-hidden relative">
+                <div className="tech-slider mb-8 md:mb-12 overflow-hidden relative w-full max-w-full">
                     <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10" />
                     <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10" />
                     <div className="flex gap-4 md:gap-6 animate-scroll whitespace-nowrap">

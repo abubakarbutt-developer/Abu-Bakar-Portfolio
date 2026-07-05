@@ -50,7 +50,7 @@ export default function Home() {
 
       <div
         ref={containerRef}
-        className="bg-background text-foreground min-h-screen transition-colors duration-300"
+        className="bg-background text-foreground min-h-screen transition-colors duration-300 overflow-x-hidden w-full max-w-full"
         style={{ opacity: showPreloader ? 0 : 1, transition: 'opacity 0.5s ease-in-out' }}
       >
         <Head>

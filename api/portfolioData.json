@@ -1,53 +1,146 @@
 {
   "personal": {
     "name": "Abu Bakar Butt",
-    "role": "Frontend Developer",
+    "role": "Full Stack Developer",
     "tagline": "Building digital experiences that matter.",
-    "email": "contact@example.com",
+    "email": "iambakarbutt@gmail.com",
     "socials": [
-      { "path": "https://github.com/abubakarbutt-developer", "label": "GitHub" },
-      { "path": "https://www.linkedin.com/in/abu-bakar-butt-68a95b318", "label": "LinkedIn" }
+      {
+        "path": "https://github.com/abubakarbutt-developer",
+        "label": "GitHub"
+      },
+      {
+        "path": "https://www.linkedin.com/in/abu-bakar-butt-7598933a3/",
+        "label": "LinkedIn"
+      }
     ]
   },
   "about": {
     "title": "About Me",
-    "description": "I am a passionate Frontend Developer with experience in building web applications using modern technologies. I love solving complex problems and creating intuitive user interfaces. When I'm not coding, I enjoy learning about new tech trends and contributing to open source."
+    "description": "I am a passionate Full Stack Developer with experience in building web applications using modern technologies — from crafting polished UIs with React and Next.js to architecting robust backends with Node.js and NestJS. I love solving complex problems and creating intuitive user experiences. When I'm not coding, I enjoy learning about new tech trends and contributing to open source."
   },
   "navLinks": [
-    { "name": "Home", "href": "#hero" },
-    { "name": "About", "href": "#about" },
-    { "name": "Skills", "href": "#skills" },
-    { "name": "Projects", "href": "#projects" },
-    { "name": "Contact", "href": "#contact" }
+    {
+      "name": "Home",
+      "href": "#hero"
+    },
+    {
+      "name": "About",
+      "href": "#about"
+    },
+    {
+      "name": "Skills",
+      "href": "#skills"
+    },
+    {
+      "name": "Projects",
+      "href": "#projects"
+    },
+    {
+      "name": "Contact",
+      "href": "#contact"
+    }
   ],
   "skills": [
-    { 
-      "category": "Frontend", 
+    {
+      "category": "Frontend",
       "items": [
-        { "name": "React", "level": 90 },
-        { "name": "Next.js", "level": 85 },
-        { "name": "Tailwind", "level": 95 },
-        { "name": "GSAP", "level": 80 },
-        { "name": "TypeScript", "level": 85 }
-      ] 
+        {
+          "name": "React",
+          "level": 90
+        },
+        {
+          "name": "Next.js",
+          "level": 85
+        },
+        {
+          "name": "Tailwind",
+          "level": 95
+        },
+        {
+          "name": "TypeScript",
+          "level": 85
+        },
+        {
+          "name": "GSAP",
+          "level": 80
+        },
+        {
+          "name": "Framer Motion",
+          "level": 82
+        },
+        {
+          "name": "React Lenis",
+          "level": 78
+        }
+      ]
     },
-
-    { 
-      "category": "Tools", 
+    {
+      "category": "Backend",
       "items": [
-        { "name": "Git", "level": 90 },
-        { "name": "Docker", "level": 60 },
-        { "name": "Figma", "level": 80 },
-        { "name": "VS Code", "level": 95 }
-      ] 
+        {
+          "name": "Node.js",
+          "level": 85
+        },
+        {
+          "name": "NestJS",
+          "level": 80
+        },
+        {
+          "name": "Express",
+          "level": 82
+        },
+        {
+          "name": "PostgreSQL",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "category": "Tools",
+      "items": [
+        {
+          "name": "Git",
+          "level": 90
+        },
+        {
+          "name": "Docker",
+          "level": 60
+        },
+        {
+          "name": "Figma",
+          "level": 80
+        },
+        {
+          "name": "VS Code",
+          "level": 95
+        }
+      ]
     }
   ],
   "projects": [
     {
       "id": 1,
+      "title": "Voltwear Ecommerce Website",
+      "description": "A premium urban fashion ecommerce platform — built with a bold, high-energy aesthetic. Features product listings, B2B section, and a sleek shopping experience.",
+      "tech": [
+        "Next.js",
+        "Tailwind",
+        "Node.js",
+        "NestJS"
+      ],
+      "link": "https://voltwear.uk/",
+      "image": "/images/voltwear.png"
+    },
+    {
+      "id": 2,
       "title": "E-Commerce Dashboard",
       "description": "A comprehensive dashboard for managing online stores with real-time analytics.",
-      "tech": ["Next.js", "Tailwind", "Recharts"],
+      "tech": [
+        "Next.js",
+        "Tailwind",
+        "Recharts"
+      ],
       "link": "#",
       "image": "/images/ecommerce.png"
     },
@@ -55,7 +148,11 @@
       "id": 2,
       "title": "Social Media App",
       "description": "A connect-centric platform for professionals to network and share ideas.",
-      "tech": ["React", "Firebase", "Redux"],
+      "tech": [
+        "React",
+        "Firebase",
+        "Redux"
+      ],
       "link": "#",
       "image": "/images/social.png"
     },
@@ -63,23 +160,27 @@
       "id": 3,
       "title": "Portfolio Website",
       "description": "Modern, performant portfolio showing skills and experience.",
-      "tech": ["Next.js", "GSAP", "Tailwind"],
+      "tech": [
+        "Next.js",
+        "GSAP",
+        "Tailwind"
+      ],
       "link": "#",
       "image": "/images/portfolio.png"
     }
   ],
   "accordions": [
-     {
-       "title": "What services do you offer?",
-       "content": "I offer frontend web development, UI/UX implementation, and performance optimization."
-     },
-     {
-       "title": "Are you available for freelance?",
-       "content": "Yes, I am currently open to freelance projects and long-term contracts."
-     },
-     {
-       "title": "What is your tech stack?",
-       "content": "I primarily work with the JavaScript ecosystem (React, Next.js, Node.js) but I am adaptable to other technologies."
-     }
+    {
+      "title": "What services do you offer?",
+      "content": "I offer frontend web development, UI/UX implementation, and performance optimization."
+    },
+    {
+      "title": "Are you available for freelance?",
+      "content": "Yes, I am currently open to freelance projects and long-term contracts."
+    },
+    {
+      "title": "What is your tech stack?",
+      "content": "I primarily work with the JavaScript ecosystem (React, Next.js, Node.js) but I am adaptable to other technologies."
+    }
   ]
 }

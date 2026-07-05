@@ -22,13 +22,6 @@ export const useSmoothScroll = () => {
             infinite: false,
         });
 
-        function raf(time: number) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
         // Sync Lenis with GSAP ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update);
 
